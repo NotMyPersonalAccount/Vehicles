@@ -4,8 +4,8 @@ import processing.core.PApplet;
 import vehicle.objects.Object;
 import vehicle.utils.Constants;
 
-public class GrassArea extends Area {
-    public GrassArea(float x, float y) {
+public class RiverArea extends Area {
+    public RiverArea(float x, float y) {
         super(x, y, Constants.WIDTH, Constants.HEIGHT / 4);
     }
 
@@ -14,11 +14,11 @@ public class GrassArea extends Area {
     }
 
     public static Area create(float x, float y) {
-        return new GrassArea(x, y);
+        return new RiverArea(x, y);
     }
 
     public void draw(PApplet app) {
-        app.fill(0, 255, 0);
+        app.fill(0, 0, 255);
         app.rect(x, y, width, height);
     }
 }
