@@ -6,15 +6,15 @@ import vehicle.utils.Constants;
 
 public class GrassArea extends Area {
     public GrassArea(float x, float y) {
-        super(x, y, Constants.WIDTH, Constants.HEIGHT / 4);
+        super(x, y, Constants.WIDTH, Constants.HEIGHT / 2);
     }
 
     public Object[] getObjects() {
         return new Object[0];
     }
 
-    public static Area create(float x, float y) {
-        return new GrassArea(x, y);
+    public static Area create() {
+        return new GrassArea(0, 0);
     }
 
     public void draw(PApplet app) {
