@@ -22,8 +22,8 @@ public class Sketch extends PApplet {
         view.mousePressed();
     }
 
-    public void keyPressed() {
-        view.keyPressed();
+    public void keyReleased() {
+        view.keyReleased();
     }
 
     public void setView(View view) {

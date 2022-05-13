@@ -20,6 +20,7 @@ public class Car extends Vehicle {
     }
 
     public void draw(PApplet app){
+        app.fill(255);
         app.rect(x, y, getWidth(), getHeight() - 10);
         app.ellipse(x + 5, y + getHeight() - 5, 10, 10);
         app.ellipse(x + getWidth() - 5, y + getHeight() - 5, 10, 10);

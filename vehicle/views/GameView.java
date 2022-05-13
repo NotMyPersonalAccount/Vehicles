@@ -21,8 +21,10 @@ import static vehicle.utils.Constants.*;
 
 public class GameView extends View {
     private final ArrayList<Area> areas = new ArrayList<>();
-    private final Vehicle playerVehicle = new Car(Constants.CANVAS_WIDTH / 2 - CAR_WIDTH, Constants.CANVAS_HEIGHT - CAR_HEIGHT * 4);
+    private final Vehicle playerVehicle = new Car(Constants.CANVAS_WIDTH / 2 - CAR_WIDTH, Constants.CANVAS_HEIGHT - CAR_HEIGHT * 3);
     private int score = 0;
+
+    private int downCount = 0;
 
     private final Text scoreComponent;
 
@@ -43,38 +45,52 @@ public class GameView extends View {
                 continue;
             }
 
-            a.move(0, 1);
+            a.move(0, CANVAS_HEIGHT / 512);
             a.draw(app);
         }
 
-        playerVehicle.move(0, 1);
+        playerVehicle.move(0, CANVAS_HEIGHT / 512);
+        if (playerVehicle.getY() > Constants.CANVAS_HEIGHT - CAR_HEIGHT || playerVehicle.getX() < 0 || playerVehicle.getX() > Constants.CANVAS_WIDTH - CAR_WIDTH) {
+            die();
+            return;
+        }
         playerVehicle.draw(app);
 
         this.scoreComponent.setText("Score: " + score);
         super.draw();
     }
 
-    public void keyPressed() {
+    public void keyReleased() {
         if (app.key == 'p') app.setView(new PauseView(app, this));
         else if (app.key == CODED) {
             switch (app.keyCode) {
                 case UP:
-                    playerVehicle.move(0, -5);
+                    playerVehicle.move(0, -CAR_HEIGHT);
+                    if (downCount > 0) {
+                        downCount--;
+                        break;
+                    }
+                    score++;
                     break;
                 case DOWN:
-                    playerVehicle.move(0, 5);
+                    playerVehicle.move(0, CAR_HEIGHT);
+                    downCount++;
                     break;
                 case LEFT:
-                    playerVehicle.move(-5, 0);
+                    playerVehicle.move(-CAR_HEIGHT, 0);
                     break;
                 case RIGHT:
-                    playerVehicle.move(5, 0);
+                    playerVehicle.move(CAR_HEIGHT, 0);
                     break;
             }
         }
     }
 
-    public Area createArea() {
+    private void die() {
+        app.setView(new EndView(app, score));
+    }
+
+    private Area createArea() {
         AreaCreator[] callable = {GrassArea::create, RiverArea::create, DesertArea::create};
         Area a = null;
         while (a == null || (areas.size() > 0 && a.getClass() == areas.get(areas.size() - 1).getClass())) {
