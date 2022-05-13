@@ -9,20 +9,27 @@ import vehicle.objects.Vehicle;
 import vehicle.objects.vehicles.Car;
 import vehicle.utils.AreaCreator;
 import vehicle.utils.Constants;
+import vehicle.views.components.Component;
+import vehicle.views.components.Container;
+import vehicle.views.components.Text;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 
 import static processing.core.PConstants.*;
-import static vehicle.utils.Constants.CAR_HEIGHT;
-import static vehicle.utils.Constants.CAR_WIDTH;
+import static vehicle.utils.Constants.*;
 
 public class GameView extends View {
     private final ArrayList<Area> areas = new ArrayList<>();
-    private final Vehicle playerVehicle = new Car(Constants.CANVAS_WIDTH / 2 - CAR_WIDTH, Constants.CANVAS_HEIGHT - CAR_HEIGHT);
+    private final Vehicle playerVehicle = new Car(Constants.CANVAS_WIDTH / 2 - CAR_WIDTH, Constants.CANVAS_HEIGHT - CAR_HEIGHT * 4);
+    private int score = 0;
+
+    private final Text scoreComponent;
 
     public GameView(Sketch app) {
         super(app, null);
+        this.scoreComponent = new Text.Builder(app).build();
+        this.components = new Component[]{new Container.Builder(app).setFixedWidth(CANVAS_WIDTH).setFixedHeight(CANVAS_HEIGHT).setDirection(Container.Direction.VERTICAL).setAlignmentX(Container.Alignment.X.RIGHT).setAlignmentY(Container.Alignment.Y.BOTTOM).setPaddingX(BASE_TEXT_SIZE).setPaddingY(BASE_TEXT_SIZE).setProperties(new Component.BaseProperties.Builder().setBackgroundColor(-1).build()).withComponents(scoreComponent).build()};
     }
 
     public void draw() {
@@ -42,12 +49,15 @@ public class GameView extends View {
 
         playerVehicle.move(0, 1);
         playerVehicle.draw(app);
+
+        this.scoreComponent.setText("Score: " + score);
+        super.draw();
     }
 
     public void keyPressed() {
         if (app.key == 'p') app.setView(new PauseView(app, this));
-        else if(app.key == CODED){
-            switch(app.keyCode){
+        else if (app.key == CODED) {
+            switch (app.keyCode) {
                 case UP:
                     playerVehicle.move(0, -5);
                     break;
