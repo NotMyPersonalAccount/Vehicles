@@ -6,7 +6,7 @@ import vehicle.utils.Constants;
 
 public class RiverArea extends Area {
     public RiverArea(float x, float y) {
-        super(x, y, Constants.WIDTH, Constants.HEIGHT / 4);
+        super(x, y, Constants.CANVAS_WIDTH, Constants.CANVAS_HEIGHT / 4);
     }
 
     public Object[] getObjects() {

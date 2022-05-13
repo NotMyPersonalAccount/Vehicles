@@ -6,7 +6,7 @@ import vehicle.utils.Constants;
 
 public class GrassArea extends Area {
     public GrassArea(float x, float y) {
-        super(x, y, Constants.WIDTH, Constants.HEIGHT / 2);
+        super(x, y, Constants.CANVAS_WIDTH, Constants.CANVAS_HEIGHT / 2);
     }
 
     public Object[] getObjects() {

@@ -3,17 +3,20 @@ package vehicle.objects.vehicles;
 import processing.core.PApplet;
 import vehicle.objects.Vehicle;
 
+import static vehicle.utils.Constants.CAR_HEIGHT;
+import static vehicle.utils.Constants.CAR_WIDTH;
+
 public class Car extends Vehicle {
     public Car(float x, float y){
         super(x, y);
     }
 
     public float getWidth(){
-        return 50;
+        return CAR_WIDTH;
     }
 
     public float getHeight(){
-        return 25 + 10;
+        return CAR_HEIGHT;
     }
 
     public void draw(PApplet app){
