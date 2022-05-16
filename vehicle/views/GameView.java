@@ -22,6 +22,9 @@ import static vehicle.utils.Constants.*;
 public class GameView extends View {
     private final ArrayList<Area> areas = new ArrayList<>();
     private final Vehicle playerVehicle = new Car(Constants.CANVAS_WIDTH / 2 - CAR_WIDTH, Constants.CANVAS_HEIGHT - CAR_HEIGHT * 3);
+
+    private boolean started = false;
+
     private int score = 0;
     private static int highScore = 0;
 
@@ -41,7 +44,7 @@ public class GameView extends View {
     public void draw() {
         createMap(false);
 
-        playerVehicle.move(0, CANVAS_HEIGHT / 512);
+        if (started) playerVehicle.move(0, CANVAS_HEIGHT / 512);
         if (playerVehicle.getY() > Constants.CANVAS_HEIGHT - CAR_HEIGHT || playerVehicle.getX() < 0 || playerVehicle.getX() > Constants.CANVAS_WIDTH - CAR_WIDTH) {
             die();
             return;
@@ -55,15 +58,12 @@ public class GameView extends View {
                 continue;
             }
 
-            a.move(0, CANVAS_HEIGHT / 512);
+            if(started) {
+                a.move(0, CANVAS_HEIGHT / 512);
+            }
             a.draw(app);
         }
 
-        playerVehicle.move(0, CANVAS_HEIGHT / 512);
-        if (playerVehicle.getY() > Constants.CANVAS_HEIGHT - CAR_HEIGHT || playerVehicle.getX() < 0 || playerVehicle.getX() > Constants.CANVAS_WIDTH - CAR_WIDTH) {
-            die();
-            return;
-        }
         playerVehicle.draw(app);
 
         this.scoreComponent.setText("Score: " + score);
@@ -74,6 +74,7 @@ public class GameView extends View {
     public void keyReleased() {
         if (app.key == 'p') app.setView(new PauseView(app, this));
         else if (app.key == CODED) {
+            started = true;
             switch (app.keyCode) {
                 case UP:
                     playerVehicle.move(0, -CAR_HEIGHT);
