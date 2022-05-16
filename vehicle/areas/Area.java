@@ -2,6 +2,7 @@ package vehicle.areas;
 
 import processing.core.PApplet;
 import vehicle.objects.Object;
+import vehicle.views.GameView;
 
 abstract public class Area {
     public float x;
@@ -17,6 +18,10 @@ abstract public class Area {
     }
 
     abstract public Object[] getObjects();
+
+    public boolean isUnsafeSpawn(){
+        return true;
+    }
 
     abstract public void draw(PApplet app);
 

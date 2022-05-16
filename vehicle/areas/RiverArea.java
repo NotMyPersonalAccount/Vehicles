@@ -13,6 +13,10 @@ public class RiverArea extends Area {
         return new Object[0];
     }
 
+    public boolean isUnsafeSpawn() {
+        return false;
+    }
+
     public static Area create() {
         return new RiverArea(0, 0);
     }

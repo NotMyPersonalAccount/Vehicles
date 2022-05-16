@@ -35,10 +35,17 @@ public class GameView extends View {
         this.scoreComponent = new Text.Builder(app).build();
         this.highScoreComponent = new Text.Builder(app).build();
         this.components = new Component[]{new Container.Builder(app).setFixedWidth(CANVAS_WIDTH).setFixedHeight(CANVAS_HEIGHT).setDirection(Container.Direction.VERTICAL).setAlignmentX(Container.Alignment.X.RIGHT).setAlignmentY(Container.Alignment.Y.BOTTOM).setPaddingX(BASE_TEXT_SIZE).setPaddingY(BASE_TEXT_SIZE).setProperties(new Component.BaseProperties.Builder().setBackgroundColor(-1).build()).withComponents(highScoreComponent, scoreComponent).build()};
+        createMap(true);
     }
 
     public void draw() {
-        createMap();
+        createMap(false);
+
+        playerVehicle.move(0, CANVAS_HEIGHT / 512);
+        if (playerVehicle.getY() > Constants.CANVAS_HEIGHT - CAR_HEIGHT || playerVehicle.getX() < 0 || playerVehicle.getX() > Constants.CANVAS_WIDTH - CAR_WIDTH) {
+            die();
+            return;
+        }
 
         Iterator<Area> it = areas.iterator();
         while (it.hasNext()) {
@@ -75,7 +82,7 @@ public class GameView extends View {
                         break;
                     }
                     score++;
-                    if(score > highScore) highScore = score;
+                    if (score > highScore) highScore = score;
                     break;
                 case DOWN:
                     playerVehicle.move(0, CAR_HEIGHT);
@@ -104,7 +111,7 @@ public class GameView extends View {
         return a;
     }
 
-    private void createMap() {
+    private void createMap(boolean spawn) {
         float y;
         if (areas.size() == 0) {
             y = Constants.CANVAS_HEIGHT;
@@ -115,6 +122,8 @@ public class GameView extends View {
 
         while (true) {
             Area a = createArea();
+            if (spawn && a.isUnsafeSpawn()) continue;
+
             y -= a.height;
             if (y < -a.height) {
                 break;
