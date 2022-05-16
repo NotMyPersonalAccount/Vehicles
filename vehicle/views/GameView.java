@@ -23,15 +23,18 @@ public class GameView extends View {
     private final ArrayList<Area> areas = new ArrayList<>();
     private final Vehicle playerVehicle = new Car(Constants.CANVAS_WIDTH / 2 - CAR_WIDTH, Constants.CANVAS_HEIGHT - CAR_HEIGHT * 3);
     private int score = 0;
+    private static int highScore = 0;
 
     private int downCount = 0;
 
     private final Text scoreComponent;
+    private final Text highScoreComponent;
 
     public GameView(Sketch app) {
         super(app, null);
         this.scoreComponent = new Text.Builder(app).build();
-        this.components = new Component[]{new Container.Builder(app).setFixedWidth(CANVAS_WIDTH).setFixedHeight(CANVAS_HEIGHT).setDirection(Container.Direction.VERTICAL).setAlignmentX(Container.Alignment.X.RIGHT).setAlignmentY(Container.Alignment.Y.BOTTOM).setPaddingX(BASE_TEXT_SIZE).setPaddingY(BASE_TEXT_SIZE).setProperties(new Component.BaseProperties.Builder().setBackgroundColor(-1).build()).withComponents(scoreComponent).build()};
+        this.highScoreComponent = new Text.Builder(app).build();
+        this.components = new Component[]{new Container.Builder(app).setFixedWidth(CANVAS_WIDTH).setFixedHeight(CANVAS_HEIGHT).setDirection(Container.Direction.VERTICAL).setAlignmentX(Container.Alignment.X.RIGHT).setAlignmentY(Container.Alignment.Y.BOTTOM).setPaddingX(BASE_TEXT_SIZE).setPaddingY(BASE_TEXT_SIZE).setProperties(new Component.BaseProperties.Builder().setBackgroundColor(-1).build()).withComponents(highScoreComponent, scoreComponent).build()};
     }
 
     public void draw() {
@@ -57,6 +60,7 @@ public class GameView extends View {
         playerVehicle.draw(app);
 
         this.scoreComponent.setText("Score: " + score);
+        this.highScoreComponent.setText("High Score: " + highScore);
         super.draw();
     }
 
@@ -71,16 +75,17 @@ public class GameView extends View {
                         break;
                     }
                     score++;
+                    if(score > highScore) highScore = score;
                     break;
                 case DOWN:
                     playerVehicle.move(0, CAR_HEIGHT);
                     downCount++;
                     break;
                 case LEFT:
-                    playerVehicle.move(-CAR_HEIGHT, 0);
+                    playerVehicle.move(-CAR_WIDTH, 0);
                     break;
                 case RIGHT:
-                    playerVehicle.move(CAR_HEIGHT, 0);
+                    playerVehicle.move(CAR_WIDTH, 0);
                     break;
             }
         }
