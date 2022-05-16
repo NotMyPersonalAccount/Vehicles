@@ -14,7 +14,7 @@ public class RiverArea extends Area {
     }
 
     public boolean isUnsafeSpawn() {
-        return false;
+        return true;
     }
 
     public static Area create() {

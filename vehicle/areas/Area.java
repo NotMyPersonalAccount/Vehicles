@@ -19,8 +19,8 @@ abstract public class Area {
 
     abstract public Object[] getObjects();
 
-    public boolean isUnsafeSpawn(){
-        return true;
+    public boolean isUnsafeSpawn() {
+        return false;
     }
 
     abstract public void draw(PApplet app);
