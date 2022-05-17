@@ -1,7 +1,6 @@
 package vehicle.areas;
 
 import processing.core.PApplet;
-import vehicle.objects.Object;
 import vehicle.objects.Vehicle;
 import vehicle.utils.Constants;
 import vehicle.views.GameView;
@@ -11,7 +10,7 @@ import static vehicle.utils.Constants.CANVAS_WIDTH;
 import static vehicle.utils.Constants.CAR_WIDTH;
 
 public class RiverArea extends Area {
-    private float[] logs;
+    private final float[] logs;
 
     public RiverArea(float x, float y) {
         super(x, y, CANVAS_WIDTH, Constants.CANVAS_HEIGHT / 4);
@@ -20,10 +19,6 @@ public class RiverArea extends Area {
                 CANVAS_WIDTH / CAR_WIDTH + (int) (Math.random() * 5) - 2,
                 CANVAS_WIDTH / CAR_WIDTH + (int) (Math.random() * 5) - 2,
         };
-    }
-
-    public Object[] getObjects() {
-        return new Object[0];
     }
 
     public boolean isUnsafeSpawn() {

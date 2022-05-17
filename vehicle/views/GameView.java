@@ -2,7 +2,7 @@ package vehicle.views;
 
 import vehicle.Sketch;
 import vehicle.areas.Area;
-import vehicle.areas.DesertArea;
+import vehicle.areas.Road;
 import vehicle.areas.GrassArea;
 import vehicle.areas.RiverArea;
 import vehicle.objects.Vehicle;
@@ -117,7 +117,7 @@ public class GameView extends View {
     }
 
     private Area createArea() {
-        AreaCreator[] callable = {GrassArea::create, RiverArea::create, DesertArea::create};
+        AreaCreator[] callable = {GrassArea::create, RiverArea::create, Road::create};
         Area a = null;
         while (a == null || (areas.size() > 0 && a.getClass() == areas.get(areas.size() - 1).getClass())) {
             a = callable[(int) app.random(callable.length)].call();
