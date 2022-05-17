@@ -9,11 +9,11 @@ import static vehicle.utils.Collision.rectCollision;
 import static vehicle.utils.Constants.CANVAS_WIDTH;
 import static vehicle.utils.Constants.CAR_WIDTH;
 
-public class RiverArea extends Area {
+public class River extends Area {
     private final float[] logs;
 
-    public RiverArea(float x, float y) {
-        super(x, y, CANVAS_WIDTH, Constants.CANVAS_HEIGHT / 4);
+    public River(float x, float y) {
+        super(x, y, CANVAS_WIDTH, Constants.CAR_WIDTH * 8);
 
         logs = new float[]{
                 CANVAS_WIDTH / CAR_WIDTH + (int) (Math.random() * 5) - 2,
@@ -26,7 +26,7 @@ public class RiverArea extends Area {
     }
 
     public static Area create() {
-        return new RiverArea(0, 0);
+        return new River(0, 0);
     }
 
     public void tick(GameView game) {
