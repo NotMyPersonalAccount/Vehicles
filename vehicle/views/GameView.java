@@ -40,27 +40,33 @@ public class GameView extends View {
         this.scoreComponent = new Text.Builder(app).build();
         this.highScoreComponent = new Text.Builder(app).build();
         this.components = new Component[]{new Container.Builder(app).setFixedWidth(CANVAS_WIDTH).setFixedHeight(CANVAS_HEIGHT).setDirection(Container.Direction.VERTICAL).setAlignmentX(Container.Alignment.X.RIGHT).setAlignmentY(Container.Alignment.Y.BOTTOM).setPaddingX(BASE_TEXT_SIZE).setPaddingY(BASE_TEXT_SIZE).setProperties(new Component.BaseProperties.Builder().setBackgroundColor(-1).build()).withComponents(highScoreComponent, scoreComponent).build()};
+
+        createMap();
     }
 
     public void draw() {
-        tick++;
-        createMap();
+        boolean shouldTick = started && app.view == this;
 
-        if (started) playerVehicle.move(0, CANVAS_HEIGHT / 512);
-        if (playerVehicle.getY() > Constants.CANVAS_HEIGHT - CAR_HEIGHT || playerVehicle.getX() < 0 || playerVehicle.getX() > Constants.CANVAS_WIDTH - CAR_WIDTH) {
-            die();
-            return;
+        if (shouldTick) {
+            tick++;
+            createMap();
+
+            playerVehicle.move(0, CANVAS_HEIGHT / 512);
+            if (playerVehicle.getY() > Constants.CANVAS_HEIGHT - CAR_HEIGHT || playerVehicle.getX() < 0 || playerVehicle.getX() > Constants.CANVAS_WIDTH - CAR_WIDTH) {
+                die();
+                return;
+            }
         }
 
         Iterator<Area> it = areas.iterator();
         while (it.hasNext()) {
             Area a = it.next();
-            if (a.y >= Constants.CANVAS_HEIGHT) {
-                it.remove();
-                continue;
-            }
+            if (shouldTick) {
+                if (a.y >= Constants.CANVAS_HEIGHT) {
+                    it.remove();
+                    continue;
+                }
 
-            if(started) {
                 a.move(0, CANVAS_HEIGHT / 512);
                 a.tick(this);
             }
