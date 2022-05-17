@@ -62,6 +62,7 @@ public class GameView extends View {
 
             if(started) {
                 a.move(0, CANVAS_HEIGHT / 512);
+                a.tick(this);
             }
             a.draw(app);
         }
@@ -101,7 +102,11 @@ public class GameView extends View {
         }
     }
 
-    private void die() {
+    public Vehicle getPlayerVehicle() {
+        return playerVehicle;
+    }
+
+    public void die() {
         app.setView(new EndView(app, score));
     }
 

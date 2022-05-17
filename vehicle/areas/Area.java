@@ -23,6 +23,9 @@ abstract public class Area {
         return false;
     }
 
+    abstract public void tick(GameView game);
+
+
     abstract public void draw(PApplet app);
 
     public void move(float x, float y) {

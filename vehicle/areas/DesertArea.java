@@ -3,6 +3,7 @@ package vehicle.areas;
 import processing.core.PApplet;
 import vehicle.objects.Object;
 import vehicle.utils.Constants;
+import vehicle.views.GameView;
 
 public class DesertArea extends Area {
     public DesertArea(float x, float y) {
@@ -15,6 +16,10 @@ public class DesertArea extends Area {
 
     public static Area create() {
         return new DesertArea(0, 0);
+    }
+
+    public void tick(GameView game){
+
     }
 
     public void draw(PApplet app) {
