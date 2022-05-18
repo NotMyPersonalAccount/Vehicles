@@ -24,6 +24,6 @@ public class Car extends Vehicle {
     }
 
     public void draw(PApplet app){
-        app.image(Sketch.carImages.get(color), x, y);
+        app.image(Sketch.carImages.get(color), x, y, CAR_WIDTH, CAR_HEIGHT);
     }
 }
