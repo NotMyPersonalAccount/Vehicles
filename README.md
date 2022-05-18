@@ -19,12 +19,12 @@ Vehicles project for APCSA 2021-22
 - [x] Score exists
 
 
-- [ ] More objects that extend from Vehicle class
+- [x] More objects that extend from Vehicle class
 - [x] Ability to crash into other items
 - [x] Obstacles randomly appear
 - [ ] Add sound effects using SoundFile
 - [ ] Change the background to radiator springs
-- [ ] Include details like plants, Heli pad, etc
+- [x] Include details like plants, Heli pad, etc
 - [x] Make a reset
 - [x] Make a reset and a highscore board
 - [x] Use mouse/key methods to implement some other extra features of game
