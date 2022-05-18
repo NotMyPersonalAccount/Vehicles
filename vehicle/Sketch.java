@@ -21,6 +21,8 @@ public class Sketch extends PApplet {
 
         carImages.put("red", loadImage("red_car.png"));
         carImages.put("yellow", loadImage("yellow_car.png"));
+        carImages.put("player", loadImage("player_car.png"));
+
         for(PImage carImage : carImages.values()) {
             carImage.resize((int)CAR_WIDTH, (int)CAR_HEIGHT);
         }

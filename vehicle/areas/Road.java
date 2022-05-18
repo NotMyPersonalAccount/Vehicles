@@ -20,11 +20,8 @@ public class Road extends Area {
         for (int j = 0; j < 2; j++) {
             float carX = x;
             for (int i = 0; i < cars.length / 2; i++) {
-                String[] colors = Sketch.carImages.keySet().toArray(new String[0]);
-                String color = colors[(int) (Math.random() * colors.length)];
-
                 carX += CAR_WIDTH * ((int) (Math.random() * 3) + 3);
-                cars[i + j * cars.length / 2] = new Car(color, carX, y + CAR_WIDTH * (j * 2 + 1));
+                cars[i + j * cars.length / 2] = new Car(chooseColor(), carX, y + CAR_WIDTH * (j * 2 + 1));
             }
         }
     }
@@ -46,10 +43,7 @@ public class Road extends Area {
                         }
                     }
 
-
-                    String[] colors = Sketch.carImages.keySet().toArray(new String[0]);
-                    String color = colors[(int) (Math.random() * colors.length)];
-                    cars[i] = new Car(color, furthestX + CAR_WIDTH * ((int) (Math.random() * 3) + 3), car.getY());
+                    cars[i] = new Car(chooseColor(), furthestX + CAR_WIDTH * ((int) (Math.random() * 3) + 3), car.getY());
                 }
             }
         }
@@ -76,5 +70,14 @@ public class Road extends Area {
         for (Car car : cars) {
             car.move(x, y);
         }
+    }
+
+    public String chooseColor() {
+        String[] colors = Sketch.carImages.keySet().toArray(new String[0]);
+        String color = null;
+        while (color == null || color.equals("player")) {
+            color = colors[(int) (Math.random() * colors.length)];
+        }
+        return color;
     }
 }

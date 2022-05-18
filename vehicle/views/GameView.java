@@ -20,7 +20,7 @@ public class GameView extends View {
     public int tick = 0;
 
     private final ArrayList<Area> areas = new ArrayList<>();
-    private final Vehicle playerVehicle = new Car("red",Constants.CANVAS_WIDTH / 2 - CAR_WIDTH, Constants.CANVAS_HEIGHT - CAR_HEIGHT * 3);
+    private final Vehicle playerVehicle = new Car("player", Constants.CANVAS_WIDTH / 2 - CAR_WIDTH, Constants.CANVAS_HEIGHT - CAR_HEIGHT * 3);
 
     private boolean started = false;
 
