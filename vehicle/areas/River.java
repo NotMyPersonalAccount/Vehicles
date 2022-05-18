@@ -67,7 +67,7 @@ public class River extends Area {
         app.rect(x, y, width, height);
 
         for (float logX : logs) {
-            app.fill(165, 42, 42);
+            app.fill(109, 76, 64);
             app.rect(logX * CAR_WIDTH, y, CAR_WIDTH, height);
         }
     }
