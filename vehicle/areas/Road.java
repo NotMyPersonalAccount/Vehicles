@@ -42,7 +42,7 @@ public class Road extends Area {
 
         Vehicle player = game.getPlayerVehicle();
         for (Vehicle vehicle : vehicles) {
-            if (rectCollision(vehicle.getX(), vehicle.getY(), CAR_WIDTH, CAR_WIDTH, player.getX(), player.getY(), CAR_WIDTH, CAR_WIDTH)) {
+            if (vehicle.isColliding(player)) {
                 game.die();
                 break;
             }
