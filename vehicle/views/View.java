@@ -24,7 +24,7 @@ public class View {
         }
     }
 
-    public void keyPressed() {
+    public void keyReleased() {
 
     }
 }

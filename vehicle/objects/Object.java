@@ -11,7 +11,6 @@ abstract public class Object {
         this.y = y;
     }
 
-
     public boolean isCollidable() {
         return true;
     }
