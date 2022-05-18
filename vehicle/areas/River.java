@@ -2,6 +2,7 @@ package vehicle.areas;
 
 import processing.core.PApplet;
 import vehicle.objects.Vehicle;
+import vehicle.objects.vehicles.Car;
 import vehicle.utils.Constants;
 import vehicle.views.GameView;
 
@@ -15,10 +16,14 @@ public class River extends Area {
     public River(float x, float y) {
         super(x, y, CANVAS_WIDTH, Constants.CAR_WIDTH * 8);
 
-        logs = new float[]{
-                CANVAS_WIDTH / CAR_WIDTH + (int) (Math.random() * 5) - 2,
-                CANVAS_WIDTH / CAR_WIDTH + (int) (Math.random() * 5) - 2,
-        };
+        logs = new float[8];
+        for (int i = 0; i < logs.length; i++) {
+            float logX =  (int) (Math.random() * 4) + 3;
+            if(i > 0){
+                logX = logs[i - 1] + (int) (Math.random() * 4) + 3;
+            }
+            logs[i] = logX;
+        }
     }
 
     public boolean isUnsafeSpawn() {
@@ -36,7 +41,14 @@ public class River extends Area {
             for (int i = 0; i < logs.length; i++) {
                 logs[i] -= 1;
                 if (logs[i] < 0) {
-                    logs[i] = CANVAS_WIDTH / CAR_WIDTH + (int) (Math.random() * 3);
+                    float furthestX = 0;
+                    for (float logX : logs) {
+                        if (logX > furthestX) {
+                            furthestX = logX;
+                        }
+                    }
+                    logs[i] = furthestX + (int) (Math.random() * 4) + 3;
+
                     continue;
                 }
                 if (rectCollision((logs[i] + 1) * CAR_WIDTH, y, CAR_WIDTH, height, player.getX(), player.getY(), player.getWidth(), player.getHeight())) {
