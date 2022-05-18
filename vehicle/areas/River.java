@@ -2,7 +2,6 @@ package vehicle.areas;
 
 import processing.core.PApplet;
 import vehicle.objects.Vehicle;
-import vehicle.objects.vehicles.Car;
 import vehicle.utils.Constants;
 import vehicle.views.GameView;
 
@@ -14,20 +13,16 @@ public class River extends Area {
     private final float[] logs;
 
     public River(float x, float y) {
-        super(x, y, CANVAS_WIDTH, Constants.CAR_WIDTH * 8);
+        super(x, y, CANVAS_WIDTH, Constants.CAR_WIDTH * 5);
 
         logs = new float[8];
         for (int i = 0; i < logs.length; i++) {
-            float logX =  (int) (Math.random() * 4) + 3;
-            if(i > 0){
+            float logX = (int) (Math.random() * 4) + 3;
+            if (i > 0) {
                 logX = logs[i - 1] + (int) (Math.random() * 4) + 3;
             }
             logs[i] = logX;
         }
-    }
-
-    public boolean isUnsafeSpawn() {
-        return true;
     }
 
     public static Area create() {

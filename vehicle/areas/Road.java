@@ -7,7 +7,6 @@ import vehicle.utils.Constants;
 import vehicle.views.GameView;
 
 import static vehicle.utils.Collision.rectCollision;
-import static vehicle.utils.Constants.CANVAS_WIDTH;
 import static vehicle.utils.Constants.CAR_WIDTH;
 
 public class Road extends Area {
@@ -58,7 +57,7 @@ public class Road extends Area {
     }
 
     public void draw(PApplet app) {
-        app.fill(246, 215, 176);
+        app.fill(138, 135, 128);
         app.rect(x, y, width, height);
         for (Car car : cars) {
             car.draw(app);

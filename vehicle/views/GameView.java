@@ -1,10 +1,7 @@
 package vehicle.views;
 
 import vehicle.Sketch;
-import vehicle.areas.Area;
-import vehicle.areas.Road;
-import vehicle.areas.GrassArea;
-import vehicle.areas.River;
+import vehicle.areas.*;
 import vehicle.objects.Vehicle;
 import vehicle.objects.vehicles.Car;
 import vehicle.utils.AreaCreator;
@@ -117,7 +114,7 @@ public class GameView extends View {
     }
 
     private Area createArea() {
-        AreaCreator[] callable = {GrassArea::create, River::create, Road::create};
+        AreaCreator[] callable = {Desert::create, River::create, Road::create};
         Area a = null;
         while (a == null || (areas.size() > 0 && a.getClass() == areas.get(areas.size() - 1).getClass())) {
             a = callable[(int) app.random(callable.length)].call();
@@ -135,8 +132,7 @@ public class GameView extends View {
         }
 
         while (true) {
-            Area a = createArea();
-            if (areas.size() == 0 && a.isUnsafeSpawn()) continue;
+            Area a = areas.size() == 0 ? new Spawn(0, 0) : createArea();
 
             y -= a.height;
             if (y < -a.height) {

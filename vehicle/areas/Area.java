@@ -16,10 +16,6 @@ abstract public class Area {
         this.height = height;
     }
 
-    public boolean isUnsafeSpawn() {
-        return false;
-    }
-
     abstract public void tick(GameView game);
 
 
