@@ -8,13 +8,11 @@ import vehicle.views.View;
 import java.util.HashMap;
 import java.util.Map;
 
-import static vehicle.utils.Constants.CAR_HEIGHT;
-import static vehicle.utils.Constants.CAR_WIDTH;
-
 public class Sketch extends PApplet {
     public View view = new StartView(this);
 
     public static Map<String, PImage> carImages = new HashMap<>();
+    public static PImage tankImage;
 
     public void settings() {
         size(800, 800);
@@ -23,9 +21,7 @@ public class Sketch extends PApplet {
         carImages.put("yellow", loadImage("yellow_car.png"));
         carImages.put("player", loadImage("player_car.png"));
 
-        for(PImage carImage : carImages.values()) {
-            carImage.resize((int)CAR_WIDTH, (int)CAR_HEIGHT);
-        }
+        tankImage = loadImage("tank.png");
     }
 
     public void draw() {

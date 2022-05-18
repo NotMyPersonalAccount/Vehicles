@@ -4,6 +4,7 @@ import processing.core.PApplet;
 import vehicle.Sketch;
 import vehicle.objects.Vehicle;
 import vehicle.objects.vehicles.Car;
+import vehicle.objects.vehicles.Tank;
 import vehicle.utils.Constants;
 import vehicle.views.GameView;
 
@@ -32,7 +33,7 @@ public class Road extends Area {
         if (game.tick % 20 == 0) {
             for (int i = 0; i < vehicles.length; i++) {
                 Vehicle vehicle = vehicles[i];
-                vehicle.move(-vehicle.getWidth(), 0);
+                vehicle.move(-CAR_WIDTH, 0);
                 if (vehicle.getX() < 0) {
                     createVehicle(i, vehicle.getY());
                 }
@@ -72,13 +73,16 @@ public class Road extends Area {
         }
         furthestX = furthestX == 0 ? x : furthestX;
 
+        if ((int) (Math.random() * 100) < 10) {
+                vehicles[i] = new Tank(furthestX + CAR_WIDTH * ((int) (Math.random() * 3) + 3) * 2, y);
+        } else {
+            String[] colors = Sketch.carImages.keySet().toArray(new String[0]);
+            String color = null;
+            while (color == null || color.equals("player")) {
+                color = colors[(int) (Math.random() * colors.length)];
+            }
 
-        String[] colors = Sketch.carImages.keySet().toArray(new String[0]);
-        String color = null;
-        while (color == null || color.equals("player")) {
-            color = colors[(int) (Math.random() * colors.length)];
+            vehicles[i] = new Car(color, furthestX + CAR_WIDTH * ((int) (Math.random() * 3) + 3), y);
         }
-
-        vehicles[i] = new Car(color, furthestX + CAR_WIDTH * ((int) (Math.random() * 3) + 3), y);
     }
 }
