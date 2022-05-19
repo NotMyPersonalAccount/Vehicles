@@ -1,6 +1,7 @@
 package vehicle.areas;
 
 import processing.core.PApplet;
+import vehicle.objects.Object;
 import vehicle.objects.Vehicle;
 import vehicle.objects.plants.Cacti;
 import vehicle.utils.Constants;
@@ -27,6 +28,10 @@ public class Desert extends Area {
         return new Desert(0, 0);
     }
 
+    public Object[] getObjects() {
+        return cacti.toArray(new Object[0]);
+    }
+
     public void tick(GameView game) {
         Vehicle player = game.getPlayerVehicle();
         for (Cacti cacti : cacti) {
@@ -42,13 +47,6 @@ public class Desert extends Area {
         app.rect(x, y, width, height);
         for (Cacti cacti : cacti) {
             cacti.draw(app);
-        }
-    }
-
-    public void move(float x, float y) {
-        super.move(x, y);
-        for (Cacti cacti : cacti) {
-            cacti.move(x, y);
         }
     }
 }

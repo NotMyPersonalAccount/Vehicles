@@ -1,6 +1,7 @@
 package vehicle.areas;
 
 import processing.core.PApplet;
+import vehicle.objects.Object;
 import vehicle.views.GameView;
 
 abstract public class Area {
@@ -16,6 +17,10 @@ abstract public class Area {
         this.height = height;
     }
 
+    public Object[] getObjects(){
+        return new Object[0];
+    }
+
     abstract public void tick(GameView game);
 
 
@@ -24,5 +29,8 @@ abstract public class Area {
     public void move(float x, float y) {
         this.x += x;
         this.y += y;
+        for(Object o : getObjects()){
+            o.move(x, y);
+        }
     }
 }

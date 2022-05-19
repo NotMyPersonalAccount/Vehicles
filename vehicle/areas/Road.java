@@ -2,6 +2,7 @@ package vehicle.areas;
 
 import processing.core.PApplet;
 import vehicle.Sketch;
+import vehicle.objects.Object;
 import vehicle.objects.Vehicle;
 import vehicle.objects.vehicles.Car;
 import vehicle.objects.vehicles.Tank;
@@ -27,6 +28,10 @@ public class Road extends Area {
 
     public static Area create() {
         return new Road(0, 0);
+    }
+
+    public Object[] getObjects() {
+        return vehicles;
     }
 
     public void tick(GameView game) {
@@ -57,13 +62,6 @@ public class Road extends Area {
         }
     }
 
-    public void move(float x, float y) {
-        super.move(x, y);
-        for (Vehicle vehicle : vehicles) {
-            vehicle.move(x, y);
-        }
-    }
-
     public void createVehicle(int i, float y) {
         float furthestX = 0;
         for (Vehicle value : vehicles) {
@@ -74,7 +72,7 @@ public class Road extends Area {
         furthestX = furthestX == 0 ? x : furthestX;
 
         if ((int) (Math.random() * 100) < 10) {
-                vehicles[i] = new Tank(furthestX + CAR_WIDTH * ((int) (Math.random() * 3) + 3) * 2, y);
+            vehicles[i] = new Tank(furthestX + CAR_WIDTH * ((int) (Math.random() * 3) + 3) * 2, y);
         } else {
             String[] colors = Sketch.carImages.keySet().toArray(new String[0]);
             String color = null;
