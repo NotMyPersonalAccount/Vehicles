@@ -28,6 +28,7 @@ public class Sketch extends PApplet {
     public void draw() {
         background(229, 230, 228);
         pushMatrix();
+        noStroke();
         view.draw();
         popMatrix();
     }
