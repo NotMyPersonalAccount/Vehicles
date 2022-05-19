@@ -4,6 +4,8 @@ import processing.core.PApplet;
 import vehicle.utils.Constants;
 import vehicle.views.GameView;
 
+import java.util.ArrayList;
+
 public class Spawn extends Area {
     public Spawn(float x, float y) {
         super(x, y, Constants.CANVAS_WIDTH, Constants.CAR_HEIGHT * 8);
@@ -20,5 +22,9 @@ public class Spawn extends Area {
     public void draw(PApplet app) {
         app.fill(0, 255, 0);
         app.rect(x, y, width, height);
+    }
+
+    public boolean checkSpawnConditions(ArrayList<Area> areas) {
+        return areas.size() == 0;
     }
 }

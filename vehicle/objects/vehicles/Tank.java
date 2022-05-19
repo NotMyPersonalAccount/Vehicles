@@ -21,6 +21,6 @@ public class Tank extends Vehicle {
     }
 
     public void draw(PApplet app){
-        app.image(Sketch.tankImage, x, y, CAR_WIDTH * 2, CAR_HEIGHT);
+        app.image(Sketch.vehicleImages.get("tank"), x, y, CAR_WIDTH * 2, CAR_HEIGHT);
     }
 }

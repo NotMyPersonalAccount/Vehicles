@@ -114,7 +114,7 @@ public class GameView extends View {
     }
 
     private Area createArea() {
-        AreaCreator[] callable = {Desert::create, River::create, Road::create};
+        AreaCreator[] callable = {Spawn::create, Desert::create, River::create, Road::create, Railroad::create};
         Area a = null;
         while (a == null || (areas.size() > 0 && a.getClass() == areas.get(areas.size() - 1).getClass())) {
             a = callable[(int) app.random(callable.length)].call();
@@ -132,7 +132,9 @@ public class GameView extends View {
         }
 
         while (true) {
-            Area a = areas.size() == 0 ? new Spawn(0, 0) : createArea();
+            Area a = createArea();
+
+            if (!a.checkSpawnConditions(areas)) continue;
 
             y -= a.height;
             if (y < -a.height) {

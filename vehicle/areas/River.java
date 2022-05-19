@@ -7,6 +7,8 @@ import vehicle.objects.plants.Log;
 import vehicle.utils.Constants;
 import vehicle.views.GameView;
 
+import java.util.ArrayList;
+
 import static vehicle.utils.Constants.CANVAS_WIDTH;
 import static vehicle.utils.Constants.CAR_WIDTH;
 
@@ -72,5 +74,9 @@ public class River extends Area {
         for (Log log : logs) {
             log.draw(app);
         }
+    }
+
+    public boolean checkSpawnConditions(ArrayList<Area> areas) {
+        return super.checkSpawnConditions(areas) && !(areas.get(areas.size() - 1) instanceof Railroad);
     }
 }

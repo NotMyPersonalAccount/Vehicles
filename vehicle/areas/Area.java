@@ -4,6 +4,8 @@ import processing.core.PApplet;
 import vehicle.objects.Object;
 import vehicle.views.GameView;
 
+import java.util.ArrayList;
+
 abstract public class Area extends Object {
     public float width;
     public float height;
@@ -39,5 +41,9 @@ abstract public class Area extends Object {
         for (Object o : getObjects()) {
             o.move(x, y);
         }
+    }
+
+    public boolean checkSpawnConditions(ArrayList<Area> areas){
+        return areas.size() > 0;
     }
 }
