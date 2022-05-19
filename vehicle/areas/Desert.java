@@ -1,7 +1,6 @@
 package vehicle.areas;
 
 import processing.core.PApplet;
-import vehicle.Sketch;
 import vehicle.objects.Object;
 import vehicle.objects.Vehicle;
 import vehicle.objects.plants.Cacti;
@@ -44,11 +43,8 @@ public class Desert extends Area {
     }
 
     public void draw(PApplet app) {
-        for (float sandX = x; sandX < x + width; sandX += Constants.CAR_WIDTH) {
-            for (float sandY = y; sandY < y + height; sandY += Constants.CAR_HEIGHT) {
-                app.image(Sketch.backgroundImages.get("sand"), sandX, sandY, Constants.CAR_WIDTH, Constants.CAR_HEIGHT);
-            }
-        }
+        app.fill(247, 224, 169);
+        app.rect(x, y, width, height);
         for (Cacti cacti : cacti) {
             cacti.draw(app);
         }

@@ -1,7 +1,6 @@
 package vehicle.areas;
 
 import processing.core.PApplet;
-import vehicle.Sketch;
 import vehicle.objects.Object;
 import vehicle.objects.Vehicle;
 import vehicle.objects.vehicles.Train;
@@ -38,7 +37,6 @@ public class Railroad extends Area {
     public void draw(PApplet app) {
         app.fill(138, 135, 128);
         app.rect(x, y, width, height);
-        app.image(Sketch.backgroundImages.get("rail"), x - CAR_WIDTH, y, CANVAS_WIDTH + CAR_WIDTH, CAR_HEIGHT);
         train.draw(app);
 
         if (train.getX() < CANVAS_WIDTH * 4 && train.getX() > -train.getWidth()) {
