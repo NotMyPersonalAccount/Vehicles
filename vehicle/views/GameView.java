@@ -59,7 +59,7 @@ public class GameView extends View {
         while (it.hasNext()) {
             Area a = it.next();
             if (shouldTick) {
-                if (a.y >= Constants.CANVAS_HEIGHT) {
+                if (a.getY() >= Constants.CANVAS_HEIGHT) {
                     it.remove();
                     continue;
                 }
@@ -128,7 +128,7 @@ public class GameView extends View {
             y = Constants.CANVAS_HEIGHT;
         } else {
             Area topArea = areas.get(areas.size() - 1);
-            y = topArea.y;
+            y = topArea.getY();
         }
 
         while (true) {

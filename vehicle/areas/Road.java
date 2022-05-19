@@ -9,7 +9,6 @@ import vehicle.objects.vehicles.Tank;
 import vehicle.utils.Constants;
 import vehicle.views.GameView;
 
-import static vehicle.utils.Collision.rectCollision;
 import static vehicle.utils.Constants.CAR_WIDTH;
 
 public class Road extends Area {

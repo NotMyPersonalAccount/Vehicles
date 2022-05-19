@@ -7,7 +7,6 @@ import vehicle.objects.plants.Log;
 import vehicle.utils.Constants;
 import vehicle.views.GameView;
 
-import static vehicle.utils.Collision.rectCollision;
 import static vehicle.utils.Constants.CANVAS_WIDTH;
 import static vehicle.utils.Constants.CAR_WIDTH;
 
@@ -56,7 +55,7 @@ public class River extends Area {
             }
         }
 
-        if (rectCollision(x, y, width, height, player.getX(), player.getY(), player.getWidth(), player.getHeight())) {
+        if (isColliding(player)) {
             for (Log log : logs) {
                 if (log.isColliding(player)) {
                     return;

@@ -4,20 +4,27 @@ import processing.core.PApplet;
 import vehicle.objects.Object;
 import vehicle.views.GameView;
 
-abstract public class Area {
-    public float x;
-    public float y;
+abstract public class Area extends Object {
     public float width;
     public float height;
 
     public Area(float x, float y, float width, float height) {
+        super(x, y);
         this.x = x;
         this.y = y;
         this.width = width;
         this.height = height;
     }
 
-    public Object[] getObjects(){
+    public float getWidth() {
+        return width;
+    }
+
+    public float getHeight() {
+        return height;
+    }
+
+    public Object[] getObjects() {
         return new Object[0];
     }
 
@@ -29,7 +36,7 @@ abstract public class Area {
     public void move(float x, float y) {
         this.x += x;
         this.y += y;
-        for(Object o : getObjects()){
+        for (Object o : getObjects()) {
             o.move(x, y);
         }
     }
