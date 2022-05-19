@@ -37,7 +37,7 @@ public class Button extends Component.Base {
     }
 
     public void onClick() {
-        //app.buttonClickSound.play();
+        Sketch.sounds.get("button_click").play();
         onClick.run();
     }
 

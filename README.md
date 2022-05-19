@@ -4,10 +4,10 @@ Vehicles project for APCSA 2021-22
 
 ## Requirements
 
-- [ ] A Vehicle, Car, and Helicopter class
+- [x] A Vehicle, Car, and Helicopter class
 - [x] Multiple moving objects
 - [x] At least 3 cars + LMQ
-- [ ] At least 2 helicopters
+- [x] At least 2 helicopters
 - [x] Control of LightningMcQueen
 - [x] Other vehicles move by themselves
 - [x] Have a start, gameplay, and game over screen

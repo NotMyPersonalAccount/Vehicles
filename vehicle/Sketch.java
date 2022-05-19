@@ -2,6 +2,7 @@ package vehicle;
 
 import processing.core.PApplet;
 import processing.core.PImage;
+import processing.sound.SoundFile;
 import vehicle.views.StartView;
 import vehicle.views.View;
 
@@ -14,6 +15,8 @@ public class Sketch extends PApplet {
     public static Map<String, PImage> carImages = new HashMap<>();
     public static Map<String, PImage> vehicleImages = new HashMap<>();
 
+    public static Map<String, SoundFile> sounds = new HashMap<>();
+
     public void settings() {
         size(800, 800);
 
@@ -23,6 +26,10 @@ public class Sketch extends PApplet {
 
         vehicleImages.put("tank", loadImage("tank.png"));
         vehicleImages.put("train", loadImage("train.png"));
+
+        sounds.put("background", new SoundFile(this, "background.mp3"));
+        sounds.get("background").loop();
+        sounds.put("button_click", new SoundFile(this, "button_click.mp3"));
     }
 
     public void draw() {

@@ -1,11 +1,11 @@
 package vehicle.views;
 
+import processing.sound.SoundFile;
 import vehicle.Sketch;
 import vehicle.areas.*;
 import vehicle.objects.Vehicle;
 import vehicle.objects.vehicles.Car;
 import vehicle.utils.AreaCreator;
-import vehicle.utils.Constants;
 import vehicle.views.components.Component;
 import vehicle.views.components.Container;
 import vehicle.views.components.Text;
@@ -20,7 +20,7 @@ public class GameView extends View {
     public int tick = 0;
 
     private final ArrayList<Area> areas = new ArrayList<>();
-    private final Vehicle playerVehicle = new Car("player", Constants.CANVAS_WIDTH / 2 - CAR_WIDTH, Constants.CANVAS_HEIGHT - CAR_HEIGHT * 3);
+    private final Vehicle playerVehicle = new Car("player", CANVAS_WIDTH / 2 - CAR_WIDTH, CANVAS_HEIGHT - CAR_HEIGHT * 3);
 
     private boolean started = false;
 
@@ -44,12 +44,19 @@ public class GameView extends View {
     public void draw() {
         boolean shouldTick = started && app.view == this;
 
+        SoundFile backgroundMusic = Sketch.sounds.get("background");
+        if(backgroundMusic.isPlaying() && !shouldTick){
+            backgroundMusic.pause();
+        }else if(!backgroundMusic.isPlaying() && shouldTick){
+            backgroundMusic.play();
+        }
+
         if (shouldTick) {
             tick++;
             createMap();
 
             playerVehicle.move(0, CANVAS_HEIGHT / 512);
-            if (playerVehicle.getY() > Constants.CANVAS_HEIGHT - CAR_HEIGHT || playerVehicle.getX() < 0 || playerVehicle.getX() > Constants.CANVAS_WIDTH - CAR_WIDTH) {
+            if (playerVehicle.getY() > CANVAS_HEIGHT - CAR_HEIGHT || playerVehicle.getX() < 0 || playerVehicle.getX() > CANVAS_WIDTH - CAR_WIDTH) {
                 die();
                 return;
             }
@@ -59,7 +66,7 @@ public class GameView extends View {
         while (it.hasNext()) {
             Area a = it.next();
             if (shouldTick) {
-                if (a.getY() >= Constants.CANVAS_HEIGHT) {
+                if (a.getY() >= CANVAS_HEIGHT) {
                     it.remove();
                     continue;
                 }
@@ -125,7 +132,7 @@ public class GameView extends View {
     private void createMap() {
         float y;
         if (areas.size() == 0) {
-            y = Constants.CANVAS_HEIGHT;
+            y = CANVAS_HEIGHT;
         } else {
             Area topArea = areas.get(areas.size() - 1);
             y = topArea.getY();
