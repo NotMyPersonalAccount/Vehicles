@@ -13,6 +13,7 @@ public class Sketch extends PApplet {
 
     public static Map<String, PImage> carImages = new HashMap<>();
     public static Map<String, PImage> vehicleImages = new HashMap<>();
+    public static Map<String, PImage> backgroundImages = new HashMap<>();
 
     public void settings() {
         size(800, 800);
@@ -23,6 +24,11 @@ public class Sketch extends PApplet {
 
         vehicleImages.put("tank", loadImage("tank.png"));
         vehicleImages.put("train", loadImage("train.png"));
+
+        backgroundImages.put("grass", loadImage("grass.jpeg"));
+        backgroundImages.put("sand", loadImage("sand.jpeg"));
+        backgroundImages.put("water", loadImage("water.jpeg"));
+        backgroundImages.put("rail", loadImage("rail.png"));
     }
 
     public void draw() {
