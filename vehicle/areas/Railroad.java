@@ -44,7 +44,7 @@ public class Railroad extends Area {
             image = "rail_alert";
         }
         
-        app.image(Sketch.backgroundImages.get(image), x, y, width, height);
+        app.image(Sketch.backgroundImages.get(image), x - CAR_WIDTH, y, width + CAR_WIDTH, height);
         train.draw(app);
     }
 
