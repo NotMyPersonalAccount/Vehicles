@@ -1,6 +1,7 @@
 package vehicle.areas;
 
 import processing.core.PApplet;
+import vehicle.Sketch;
 import vehicle.objects.Object;
 import vehicle.objects.Vehicle;
 import vehicle.objects.plants.Log;
@@ -68,9 +69,7 @@ public class River extends Area {
     }
 
     public void draw(PApplet app) {
-        app.fill(0, 0, 255);
-        app.rect(x, y, width, height);
-
+        app.image(Sketch.backgroundImages.get("water"), x, y);
         for (Log log : logs) {
             log.draw(app);
         }

@@ -14,8 +14,7 @@ public class Sketch extends PApplet {
 
     public static Map<String, PImage> carImages = new HashMap<>();
     public static Map<String, PImage> vehicleImages = new HashMap<>();
-
-    public static PImage railImage;
+    public static Map<String, PImage> backgroundImages = new HashMap<>();
 
     public static Map<String, SoundFile> sounds = new HashMap<>();
 
@@ -29,7 +28,11 @@ public class Sketch extends PApplet {
         vehicleImages.put("tank", loadImage("tank.png"));
         vehicleImages.put("train", loadImage("train.png"));
 
-        railImage = loadImage("rail.png");
+        backgroundImages.put("grass", loadImage("grass.jpg"));
+        backgroundImages.put("sand", loadImage("sand.jpg"));
+        backgroundImages.put("water", loadImage("water.jpg"));
+        backgroundImages.put("rail", loadImage("rail.png"));
+        backgroundImages.put("rail_alert", loadImage("rail_alert.png"));
 
         sounds.put("background", new SoundFile(this, "background.mp3"));
         sounds.get("background").loop();

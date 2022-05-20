@@ -42,12 +42,13 @@ public class GameView extends View {
     }
 
     public void draw() {
+        System.out.println("frame: " + app.frameRate + " count" + areas.size());
         boolean shouldTick = started && app.view == this;
 
         SoundFile backgroundMusic = Sketch.sounds.get("background");
-        if(backgroundMusic.isPlaying() && !shouldTick){
+        if (backgroundMusic.isPlaying() && !shouldTick) {
             backgroundMusic.pause();
-        }else if(!backgroundMusic.isPlaying() && shouldTick){
+        } else if (!backgroundMusic.isPlaying() && shouldTick) {
             backgroundMusic.play();
         }
 

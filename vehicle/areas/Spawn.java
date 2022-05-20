@@ -1,6 +1,7 @@
 package vehicle.areas;
 
 import processing.core.PApplet;
+import vehicle.Sketch;
 import vehicle.utils.Constants;
 import vehicle.views.GameView;
 
@@ -20,8 +21,7 @@ public class Spawn extends Area {
     }
 
     public void draw(PApplet app) {
-        app.fill(0, 255, 0);
-        app.rect(x, y, width, height);
+        app.image(Sketch.backgroundImages.get("grass"), x, y);
     }
 
     public boolean checkSpawnConditions(ArrayList<Area> areas) {

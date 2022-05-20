@@ -38,16 +38,14 @@ public class Railroad extends Area {
     public void draw(PApplet app) {
         app.fill(138, 135, 128);
         app.rect(x, y, width, height);
-        app.image(Sketch.railImage, x - CAR_WIDTH, y, CANVAS_WIDTH + CAR_WIDTH, CAR_HEIGHT);
-        train.draw(app);
 
-        if (train.getX() < CANVAS_WIDTH * 4 && train.getX() > -train.getWidth()) {
-            if (app.frameCount % 15 == 0) {
-                if (app.frameCount % 2 == 0) app.fill(255, 0, 0);
-                app.rect(x, y, width, 5);
-                app.rect(x, y + height - 5, width, 5);
-            }
+        String image = "rail";
+        if (train.getX() < CANVAS_WIDTH * 4 && train.getX() > -train.getWidth() && app.frameCount % 10 < 5) {
+            image = "rail_alert";
         }
+        
+        app.image(Sketch.backgroundImages.get(image), x, y, width, height);
+        train.draw(app);
     }
 
     public boolean checkSpawnConditions(ArrayList<Area> areas) {
