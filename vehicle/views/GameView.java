@@ -122,11 +122,7 @@ public class GameView extends View {
 
     private Area createArea() {
         AreaCreator[] callable = {Spawn::create, Desert::create, River::create, Road::create, Railroad::create};
-        Area a = null;
-        while (a == null || (areas.size() > 0 && a.getClass() == areas.get(areas.size() - 1).getClass())) {
-            a = callable[(int) app.random(callable.length)].call();
-        }
-        return a;
+        return callable[(int) app.random(callable.length)].call();
     }
 
     private void createMap() {

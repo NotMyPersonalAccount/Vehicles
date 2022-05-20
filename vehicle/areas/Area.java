@@ -36,14 +36,13 @@ abstract public class Area extends Object {
     abstract public void draw(PApplet app);
 
     public void move(float x, float y) {
-        this.x += x;
-        this.y += y;
+        super.move(x, y);
         for (Object o : getObjects()) {
             o.move(x, y);
         }
     }
 
     public boolean checkSpawnConditions(ArrayList<Area> areas){
-        return areas.size() > 0;
+        return areas.size() > 0 && areas.get(areas.size() - 1).getClass() != this.getClass();
     }
 }
