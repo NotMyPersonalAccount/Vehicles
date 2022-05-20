@@ -42,7 +42,8 @@ public class GameView extends View {
     }
 
     public void draw() {
-        System.out.println("frame: " + app.frameRate + " count" + areas.size());
+        System.out.println("fps: " + String.format("%.2f", app.frameRate) + " areas: " + areas.size() + " objects: " + areas.stream().mapToInt(Area -> Area.getObjects().length).sum());
+
         boolean shouldTick = started && app.view == this;
 
         SoundFile backgroundMusic = Sketch.sounds.get("background");

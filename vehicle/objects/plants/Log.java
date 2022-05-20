@@ -1,6 +1,7 @@
 package vehicle.objects.plants;
 
 import processing.core.PApplet;
+import vehicle.Sketch;
 import vehicle.objects.Object;
 
 import static vehicle.utils.Constants.CAR_HEIGHT;
@@ -20,7 +21,6 @@ public class Log extends Object {
     }
 
     public void draw(PApplet app) {
-        app.fill(109, 76, 64);
-        app.rect(x, y, CAR_WIDTH, CAR_HEIGHT * 5);
+        app.image(Sketch.backgroundImages.get("log"), x, y);
     }
 }

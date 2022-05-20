@@ -33,6 +33,7 @@ public class Sketch extends PApplet {
         backgroundImages.put("water", loadImage("water.jpg"));
         backgroundImages.put("rail", loadImage("rail.png"));
         backgroundImages.put("rail_alert", loadImage("rail_alert.png"));
+        backgroundImages.put("log", loadImage("log.jpg"));
 
         sounds.put("background", new SoundFile(this, "background.mp3"));
         sounds.get("background").loop();
@@ -40,7 +41,7 @@ public class Sketch extends PApplet {
     }
 
     public void draw() {
-        background(229, 230, 228);
+        background(0);
         pushMatrix();
         noStroke();
         view.draw();
